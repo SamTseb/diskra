@@ -35,7 +35,7 @@ public:
 	celoe ADD_ZZ_Z(celoe c1) // ńëîćĺíčĺ
 	{
 		return;
-	}
+	} 
 
 	celoe SUB_ZZ_Z(celoe c1)// âű÷čňŕíčĺ
 	{
