@@ -1,6 +1,6 @@
 #pragma once
 #include "celoe.h"
-// Хохлов, Цебульский
+// Г•Г®ГµГ«Г®Гў, Г–ГҐГЎГіГ«ГјГ±ГЄГЁГ©
 class fraction
 {
 public:
@@ -9,42 +9,42 @@ public:
 	int znam_len;
 	int znam[100];
 
-	fraction RED_Q_Q(fraction f1) // сокращение дроби
+	fraction RED_Q_Q() // Г±Г®ГЄГ°Г Г№ГҐГ­ГЁГҐ Г¤Г°Г®ГЎГЁ
 	{
 		return;
 	};
 
-	bool INT_Q_B(fraction f1) // проверка не целое
+	bool INT_Q_B() // ГЇГ°Г®ГўГҐГ°ГЄГ  Г­ГҐ Г¶ГҐГ«Г®ГҐ
 	{
 		return;
 	};
 
-	fraction TRANS_Z_Q(celoe c1) // целое в дробь
+	fraction TRANS_Z_Q(celoe c1) // Г¶ГҐГ«Г®ГҐ Гў Г¤Г°Г®ГЎГј
 	{
 		return;
 	};
 
-	celoe TRANS_Q_Z(fraction f1) // дробь в целое
+	celoe TRANS_Q_Z() // Г¤Г°Г®ГЎГј Гў Г¶ГҐГ«Г®ГҐ
 	{
 		return;
 	};
 
-	fraction ADD_QQ_Q(fraction f1, fraction f2) // сложение
+	fraction ADD_QQ_Q(fraction f1) // Г±Г«Г®Г¦ГҐГ­ГЁГҐ
 	{
 		return;
 	};
 
-	fraction SUB_QQ_Q(fraction f1, fraction f2) // вычитание
+	fraction SUB_QQ_Q(fraction f1) // ГўГ»Г·ГЁГІГ Г­ГЁГҐ
 	{
 		return;
 	};
 
-	fraction MUL_QQ_Q(fraction f1, fraction f2) // умножение 
+	fraction MUL_QQ_Q(fraction f1) // ГіГ¬Г­Г®Г¦ГҐГ­ГЁГҐ 
 	{
 		return;
 	};
 
-	fraction DIV_QQ_Q(fraction f1, fraction f2) // деление
+	fraction DIV_QQ_Q(fraction f1) // Г¤ГҐГ«ГҐГ­ГЁГҐ
 	{
 		return;
 	};
