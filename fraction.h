@@ -24,27 +24,27 @@ public:
 		return;
 	};
 
-	fraction TRANS_Q_Z(fraction f1) // дробь в целое
+	celoe TRANS_Q_Z(fraction f1) // дробь в целое
 	{
 		return;
 	};
 
-	fraction ADD_QQ_Q(fraction f1) // сложение
+	fraction ADD_QQ_Q(fraction f1, fraction f2) // сложение
 	{
 		return;
 	};
 
-	fraction SUB_QQ_Q(fraction f1) // вычитание
+	fraction SUB_QQ_Q(fraction f1, fraction f2) // вычитание
 	{
 		return;
 	};
 
-	fraction MUL_QQ_Q(fraction f1) // умножение 
+	fraction MUL_QQ_Q(fraction f1, fraction f2) // умножение 
 	{
 		return;
 	};
 
-	fraction DIV_QQ_Q(fraction f1) // деление
+	fraction DIV_QQ_Q(fraction f1, fraction f2) // деление
 	{
 		return;
 	};
