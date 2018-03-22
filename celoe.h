@@ -1,5 +1,5 @@
 #pragma once
-// Ковалева, Иванов
+// ДГ®ГўЕ•Г«ДєГўЕ•, ДЊГўЕ•Г­Г®Гў
 class celoe
 {
 public:
@@ -7,52 +7,52 @@ public:
 	int len;
 	int bdy[100];
 
-	celoe ABS_Z_N(celoe c1) // модуль
+	celoe ABS_Z_N() // Д›Г®Г¤ГіГ«Гј
 	{
 		return;
 	}
 
-	int POZ_Z_D(celoe c1) // определение знака
+	int POZ_Z_D() // Г®ДЏД‘ДєГ¤ДєГ«ДєГ­ДЌДє Г§Г­Е•Д™Е•
 	{
 		return;
 	}
 
-	celoe MUL_ZM_Z(celoe c1) //умножение на -1
+	celoe MUL_ZM_Z() //ГіД›Г­Г®Д‡ДєГ­ДЌДє Г­Е• -1
 	{
 		return;
 	}
 
-	celoe TRANS_N_Z(natural n1) //перевод в целое из натурального
+	self? TRANS_N_Z(natural n1) //ДЏДєД‘ДєГўГ®Г¤ Гў Г¶ДєГ«Г®Дє ДЌГ§ Г­Е•Е€ГіД‘Е•Г«ГјГ­Г®ДѓГ®
 	{
 		return;
 	}
 
-	natural TRANS_Z_N(celoe c1) // перевод в натуральное
+	natural TRANS_Z_N() // ДЏДєД‘ДєГўГ®Г¤ Гў Г­Е•Е€ГіД‘Е•Г«ГјГ­Г®Дє
 	{
 		return;
 	}
 
-	celoe ADD_ZZ_Z(celoe c1, celoe c2) // сложение
+	celoe ADD_ZZ_Z(celoe c1) // Е„Г«Г®Д‡ДєГ­ДЌДє
 	{
 		return;
 	}
 
-	celoe SUB_ZZ_Z(celoe c1, celoe c2)// вычитание
+	celoe SUB_ZZ_Z(celoe c1)// ГўЕ±Г·ДЌЕ€Е•Г­ДЌДє
 	{
 		return;
 	}
 
-	celoe MUL_ZZ_Z(celoe c1, celoe c2)// умножение
+	celoe MUL_ZZ_Z(celoe c1)// ГіД›Г­Г®Д‡ДєГ­ДЌДє
 	{
 		return;
 	}
 
-	celoe DIV_ZZ_Z(celoe c1, celoe c2)//частное от деление
+	celoe DIV_ZZ_Z(celoe c1)//Г·Е•Е„Е€Г­Г®Дє Г®Е€ Г¤ДєГ«ДєГ­ДЌДє
 	{
 		return;
 	}
 
-	celoe MOD_ZZ_Z(celoe c1, celoe c2)// остаток от деления
+	celoe MOD_ZZ_Z(celoe c1)// Г®Е„Е€Е•Е€Г®Д™ Г®Е€ Г¤ДєГ«ДєГ­ДЌЛ™
 	{
 		return;
 	}
