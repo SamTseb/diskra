@@ -4,10 +4,8 @@
 class fraction
 {
 public:
-	int chisl_len;
-	int chisl[100];
-	int znam_len;
-	int znam[100];
+	celoe chislitel;
+	natural znamenatel;
 
 	fraction RED_Q_Q() // ñîêðàùåíèå äðîáè
 	{
