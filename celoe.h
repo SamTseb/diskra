@@ -50,7 +50,7 @@ public:
 		return;
 	}
 
-	celoe DIV_ZZ_Z(celoe c1)//÷ŕńňíîĺ îň äĺëĺíčĺ
+	celoe DIV_ZZ_Z(natural n1)//÷ŕńňíîĺ îň äĺëĺíčĺ
 	{
 		return;
 	}
