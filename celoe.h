@@ -8,7 +8,7 @@ public:
 	int bdy[100];
 	
 	// OR: natural chislo; лучше вот так, наверное. не очень эффективно, но похуй
-	//     bool is_negative 
+	//     bool Is_Posotive; 
 
 	celoe ABS_Z_N() // ěîäóëü
 	{
