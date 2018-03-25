@@ -6,6 +6,9 @@ public:
 	bool Is_Posotive;
 	int len;
 	int bdy[100];
+	
+	// OR: natural chislo;
+	//     bool is_negative
 
 	celoe ABS_Z_N() // ěîäóëü
 	{
