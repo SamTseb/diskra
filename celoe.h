@@ -25,7 +25,9 @@ public:
 
 	celoe MUL_ZM_Z() //óěíîćĺíčĺ íŕ -1
 	{
-		return;
+		if (bdy[0] == 1)  return bdy[0] = 0; 
+		if (bdy[0] == 0 && bdy[0] != 0)  return bdy[0] = 1; 
+		else return bdy[0];
 	}
 
 	self? TRANS_N_Z(natural n1) //ďĺđĺâîä â öĺëîĺ čç íŕňóđŕëüíîăî
