@@ -1,66 +1,70 @@
 // Иванов, Ковалева
 
-#ifndef Z_NUMBER_H_INCLUDED
-#define Z_NUMBER_H_INCLUDED
-#include "N_Number.h"
+#ifndef CELOE_H_
+#define CELOE_H_
+#include "N_Number.h" //это же так работает? я с деревни просто
 
 using namespace std;
 
-const unsigned int SIZE = 100;
+const unsigned int Size=100;
 
 class Z_Number
 {
 public:
 	int sign; //знак числа (1 — минус, 0 — плюс)
-	int number[SIZE]; // массив цифр
+	int number[Size]; // массив цифр
 	int last_position; //номер старшей позиции
 
+	
 	N_Number ABS_Z_N() // Абсолютная величина числа, результат - натуральное
-	{		
-		Z_Number temp;
-		temp.sign = 0;
-		temp.number = number;
-		temp.last_position = last_position;
-		N_Number result = temp.TRANS_Z_N();
-		return result;
-	}
+		{		
+			Z_Number temp;
+			temp.sign = 0;
+			temp.number = number;
+			temp.last_position = last_position;
+			N_Number result = temp.TRANS_Z_N();
+			return result;
+		}
 
-	int POZ_Z_D() // Определение положительности числа (2 - положительное, 0 — равное нулю, 1 - отрицательное)
-	{
-		int result;
-		if(sign == 1){
-			result = 1;
-		} else
+		int POZ_Z_D() // Определение положительности числа (2 - положительное, 0 — равное нулю, 1 - отрицательное)
 		{
-			if(number[last_position] == 0)
-			{
-				result = 0;
+			int result;
+			if(sign == 1){
+				result = 1;
 			} else
 			{
-				result = 2;
+				if(number[last_position] == 0){ // по идее если старший разряд = 0, то наверное и число = 0, думаю этого должно быть достаточно
+					result = 0;
+				} else
+				{
+					result = 2;
+				}
 			}
+			return result;
 		}
-		return result;
-	}
 
-	Z_Number MUL_ZM_Z() // Умножение целого на (-1)
-	{
-		Z_Number result;
-		result.last_position = last_position;
-		for(int i = 0; i < last_position; i++)
+		void checkZero() // страховка которая делает sign равным 0, если само число - 0
 		{
-			result.number[i]=number[i];
+			if(POZ_Z_D() == 0)
+			{
+				sign = 0;
+			}	
 		}
-			
-		if(sign == 1)
+		
+		Z_Number MUL_ZM_Z() // Умножение целого на (-1)
 		{
-			result.sign = 0;	
-		} else
-		{
-			result.sign = 1;
+			Z_Number result;
+			result.number = number;
+			result.last_position = last_position;
+			if(sign == 1){
+				result.sign = 0;	
+			} else
+			{
+				result.sign = 1;
+			}
+			result.checkZero(); //ну вот здесь она спасает от кривости рук и лени делать отдельный иф для 0
+			return result;
 		}
-		return result;
-	}
 
 	Z_Number TRANS_N_Z(N_Number n1) // Преобразование натурального в целое
 	{
@@ -79,13 +83,15 @@ public:
 		N_Number result;
 		result.last_position = last_position;
 		if (POZ_Z_D() == 2) {
-			//тут мы пишем юзверю, что он не прав и число у него отрицательное
+			
+					//тут мы пишем юзверю, что он не прав и у него (хуй видно) число отрицательное
+			
 		} else
 		{
 			for(int i = 0; i < last_position; i++)
-			{
-				result.number[i]=number[i];
-			}
+					{
+					result.number[i]=number[i];
+					}
 		}
 		return result;
 	}
@@ -119,6 +125,7 @@ public:
 				}
 				}
 			}	
+		result.checkZero();
 		return result;
 	} 
 
@@ -130,6 +137,7 @@ public:
 		N_Number abs1 = ABS_Z_N();
 		N_Number absTemp = temp.ABS_Z_N();
 		result = TRANS_N_Z(abs1.ADD_NN_N(absTemp));
+		result.checkZero();
 		return result;
 	}
 
@@ -146,6 +154,7 @@ public:
 			result = TRANS_N_Z(abs1.MUL_NN_N(abs2));
 			result.sign = 1;
 		}
+		result.checkZero();
 		return result;
 	}
 
@@ -162,6 +171,7 @@ public:
 			result = TRANS_N_Z(abs1.DIV_NN_N(abs2));
 			result.sign = 1;
 		}
+		result.checkZero();
 		return result;
 	}
 
@@ -177,9 +187,10 @@ public:
 		{
 			result = TRANS_N_Z( abs2.SUB_NN_N(abs1.MOD_NN_N(abs2)) );
 		}
+		result.checkZero();
 		return result;
 	}
 
 };
 
-#endif
+#endif // хз че это, я с деревни
