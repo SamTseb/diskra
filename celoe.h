@@ -12,7 +12,8 @@ public:
 
 	celoe ABS_Z_N() // ěîäóëü
 	{
-		return;
+		if (bdy[0] == 1)  return bdy[0] = 0; 
+		else return bdy[0];
 	}
 
 	int POZ_Z_D() // îďđĺäĺëĺíčĺ çíŕęŕ
