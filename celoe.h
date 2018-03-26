@@ -12,14 +12,14 @@ public:
 
 	celoe ABS_Z_N() // ěîäóëü
 	{
-		if (bdy[0] == 0 && bdy[1] != 0)  return 2;
-		if (bdy[0] == 0)  return 0; 
-		if (bdy[0] == 1)  return 1;
+		return;
 	}
 
 	int POZ_Z_D() // îďđĺäĺëĺíčĺ çíŕęŕ
 	{
-		return;
+		if (bdy[0] == 0 && bdy[1] != 0)  return 2;
+		if (bdy[0] == 0)  return 0; 
+		if (bdy[0] == 1)  return 1;
 	}
 
 	celoe MUL_ZM_Z() //óěíîćĺíčĺ íŕ -1
