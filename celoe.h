@@ -12,9 +12,9 @@ public:
 
 	celoe ABS_Z_N() // ěîäóëü
 	{
-		if (bdy[1] == 0)  return 0; 
-		if (bdy[1] > 0)  return 2; 
-		if (bdy[1] < 0)  return 1;
+		if (bdy[0] == 0)  return 0; 
+		if (bdy[0] > 0)  return 2; 
+		if (bdy[0] < 0)  return 1;
 	}
 
 	int POZ_Z_D() // îďđĺäĺëĺíčĺ çíŕęŕ
