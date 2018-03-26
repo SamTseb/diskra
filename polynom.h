@@ -48,12 +48,52 @@ public:
 
 	polynom DIV_PP_P(polynom p1) //частное от деления многочлена на многочлен
 	{
-		return;
+		polynom copy, new_polynom; 
+		int k = 0, i;
+		
+		for (i = 0; i < copy.pow; i++)
+				copy.body[i] = body[i];
+			copy.pow = pow;
+
+		while (p1.pow <= copy.pow) {
+			for (i = p1.pow - 1; i != pow - 1; i++)
+				p1.body[i] = 0;
+
+			for (i = 0; i < copy.pow; i++)
+				p1.body[i] *= copy.body[copy.pow - 1];
+
+			for (i = 0; i < pow; i++)
+				body[i] -= copy.body[i];
+
+			new_polynom.body[k++] = copy.body[i];  // коэфициенты записаны в прямом порядке (an...a1,a0)
+			copy.pow--;
+		}
+		
+		new_polynom.pow = k;
+		
+		return new_polynom;
 	};
 
 	polynom MOD_PP_P(polynom p1) //остаток от деления многочлена на многочлен
 	{
-		return;
+		polynom quotient = DIV_PP_P(p1);  // частное
+		polynom copy, result;
+
+		for (int i = 0; i < pow; i++)
+			copy.body[i] = body[i];
+		copy.pow = pow;
+
+		for (int i = 0; i < quotient.pow; i++)
+			body[i] = quotient.body[i];
+		pow = quotient.pow;
+
+		polynom QP = MUL_PP_P(p1);  
+
+		for (int i = 0; i < copy.pow; i++)
+			body[i] = copy.body[i];
+		pow = copy.pow;
+
+		return result = SUB_PP_P(QP);
 	};
 
 	polynom GCF_PP_P(polynom p1) //НОД многосленов
