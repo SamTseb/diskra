@@ -7,6 +7,20 @@ public:
 	int len;
 	int bdy[100];
 	
+	celoe (string str){
+
+		int i=0, start=0;
+			if (str[0]=='-') start++;
+
+		while(str[i] != '/0') i++; // Scan number
+
+		for(int j = i-1, z = 0; j >= start; z++, j--) number[z]=str[j]; // Push number
+
+		if (str[0]=='-') Is_Posotive = false;
+
+	}
+
+	
 	// OR: natural chislo; лучше вот так, наверное. не очень эффективно, но похуй
 	//     bool Is_Posotive; 
 
