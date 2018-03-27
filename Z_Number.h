@@ -15,13 +15,20 @@ public:
 	int number[Size]; // массив цифр
 	int last_position; //номер старшей позиции
 
+	Z_Number Return_Z()
+   	{
+       		Z_Number result;
+        	result.last_position = last_position;
+		return.sihn = sign;
+        	for(int i = 0; i < result.last_position; i++)
+           		result.number[i] = number[i];
+       		return result;
+   	}
 	
 	N_Number ABS_Z_N() // Абсолютная величина числа, результат - натуральное
 		{		
-			Z_Number temp;
-			temp.sign = 0;
-			temp.number = number;
-			temp.last_position = last_position;
+			Z_Number temp = Return_Z();
+			Z_Number.sign = 1;
 			N_Number result = temp.TRANS_Z_N();
 			return result;
 		}
@@ -53,9 +60,7 @@ public:
 		
 		Z_Number MUL_ZM_Z() // Умножение целого на (-1)
 		{
-			Z_Number result;
-			result.number = number;
-			result.last_position = last_position;
+			Z_Number result = Return_Z();
 			if(sign == 1){
 				result.sign = 0;	
 			} else
@@ -103,7 +108,7 @@ public:
 		N_Number abs2 = z2.ABS_Z_N();
 		if ((sign == 0) && (z2.sign == 0))
 		{
-			result.number = TRANS_N_Z(abs1.ADD_NN_N(abs2));
+			result = TRANS_N_Z(abs1.ADD_NN_N(abs2));
 			result.sign = 0;
 		} else
 		{
