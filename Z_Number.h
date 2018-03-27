@@ -14,6 +14,23 @@ public:
 	int sign; //знак числа (1 — минус, 0 — плюс)
 	int number[Size]; // массив цифр
 	int last_position; //номер старшей позиции
+	
+	Z_Number (string str){
+
+		int i=0, start=0;
+			if (str[0]=='-') start++;
+
+		while(str[i] != '/0') i++; // Scan number
+
+		last_position = i-1;
+
+		for(int j = i-1, z = 0; j >= start; z++, j--) number[z]=static_cast<int>(str[j]); // Push number
+
+		if (str[0]=='-') sign = true;
+
+	}
+
+
 
 	Z_Number Return_Z() // чтобы корректно копировать
    	{
