@@ -8,7 +8,29 @@ public:
 
 	polynom ADD_PP_P(polynom p1) //сложение многосленов
 	{
-		return;
+		polynom copy, new_polynom; 
+		int k = 0, i; 
+
+		copy.pow = pow; 
+
+		for (i = 0; i < copy.pow; i++) 
+		copy.body[i] = body[i]; 
+
+
+		for (i = 0; i < copy.pow && i < p1.pow; i++) // сложение коэффициентов при переменных с одинаковой степенью 
+		{ 
+			new_polynom.body[i] = ADD_QQ_Q(p1); 
+			k++; 
+		} 
+
+		for (i = k; i < copy.pow || i < p1.pow; i++) // копирование коэффициентов при переменных "без пары" в новый полином 
+		{ 
+			new_polynom.body[i] = (copy.pow > p1.pow) ? copy.body[i] : p1.body[i]; 
+		} 
+		
+		new_polynom.pow = (copy.pow > p1.pow) ? copy.pow : p1.pow; 
+
+		return new_polynom; 
 	};
 
 	polynom SUB_PP_P(polynom p1) //вычитание многосленов
@@ -51,9 +73,9 @@ public:
 		polynom copy, new_polynom; 
 		int k = 0, i;
 		
+		copy.pow = pow;
 		for (i = 0; i < copy.pow; i++)
-				copy.body[i] = body[i];
-			copy.pow = pow;
+			copy.body[i] = body[i];
 
 		while (p1.pow <= copy.pow) {
 			for (i = p1.pow - 1; i != pow - 1; i++)
@@ -78,10 +100,10 @@ public:
 	{
 		polynom quotient = DIV_PP_P(p1);  // частное
 		polynom copy, result;
-
+		
+		copy.pow = pow;
 		for (int i = 0; i < pow; i++)
 			copy.body[i] = body[i];
-		copy.pow = pow;
 
 		for (int i = 0; i < quotient.pow; i++)
 			body[i] = quotient.body[i];
