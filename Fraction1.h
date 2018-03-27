@@ -8,6 +8,25 @@ class fraction
 public:
 	celoe chislitel;	 // celoe 
 	N_Number znamenatel; // natural
+	
+	fraction (string str){
+		int i, start=0;
+			if (str[0]=='-') start++;
+
+			i=1;
+		while(str[i]!='/') i++;// Scan chislit
+
+		for(int j = i-1, z=0; j>=start; j--,z++) //push chislit
+			chislitel.body[z]=str[j];
+
+		int j = i+1;
+		while(str[j]!='/0') j++; // Scan znam
+
+		for(j = j-1, z=0; j >= (i+1); j--,z++) //push znam
+				znamenatel.number[z]=str[j];
+
+		if (str[0]=='-') chislitel.Is_Posotive = false;
+	}
 
 	fraction RED_Q_Q() // reduction of fractions
 	{
