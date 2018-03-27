@@ -15,11 +15,11 @@ public:
 	int number[Size]; // массив цифр
 	int last_position; //номер старшей позиции
 
-	Z_Number Return_Z()
+	Z_Number Return_Z() // чтобы корректно копировать
    	{
        		Z_Number result;
         	result.last_position = last_position;
-		return.sihn = sign;
+		return.sign = sign;
         	for(int i = 0; i < result.last_position; i++)
            		result.number[i] = number[i];
        		return result;
