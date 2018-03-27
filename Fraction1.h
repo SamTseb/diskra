@@ -1,14 +1,33 @@
 #pragma once
-#include "celoe.h"
+#include "Z_Number.h"
 #include "N_Number.h"
 
 
 class fraction
 {
 public:
-	celoe chislitel;	 // celoe 
+	Z_Number chislitel;	 // celoe
 	N_Number znamenatel; // natural
 
+	fraction (string str){
+		int i, start=0;
+			if (str[0]=='-') start++;
+
+			i=1;
+		while(str[i]!='/') i++;// Scan chislit
+
+		for(int j = i-1, z=0; j>=start; j--,z++) //push chislit
+			chislitel.number[z]= static_cast<int>(str[j]);
+
+		int j = i+1;
+		while(str[j]!='/0') j++; // Scan znam
+
+		for(j = j-1, z=0; j >= (i+1); j--,z++) //push znam
+				znamenatel.number[z]=static_cast<int>(str[j]);
+
+		if (str[0]=='-') chislitel.sign = true;
+	}
+	
 	fraction RED_Q_Q() // reduction of fractions
 	{
 		N_Number NOD,
@@ -69,12 +88,34 @@ public:
 
 	fraction ADD_QQ_Q(fraction f1) // fraction + fraction
 	{
-		return;
+		N_Number NOK_znam;
+		fraction* buffer;
+		buffer = (fraction*)malloc(sizeof(fraction));
+		buffer = this;
+
+		NOK_znam = buffer->znamenatel.LCM_NN_N(f1.znamenatel);
+		buffer->znamenatel = buffer->znamenatel.MUL_NN_N(NOK_znam.DIV_NN_N(buffer->znamenatel));
+		buffer->chislitel = buffer->chislitel.TRANS_N_Z(NOK_znam.DIV_NN_N(buffer->znamenatel));
+		f1.chislitel = f1.chislitel.TRANS_N_Z(NOK_znam.DIV_NN_N(f1.znamenatel));
+		buffer->chislitel = buffer->chislitel.ADD_ZZ_Z(f1.chislitel);
+
+		return *buffer;
 	};
 
 	fraction SUB_QQ_Q(fraction f1) // fraction - fraction
 	{
-		return;
+		N_Number NOK_znam;
+		fraction* buffer;
+		buffer = (fraction*)malloc(sizeof(fraction));
+		buffer = this;
+
+		NOK_znam = buffer->znamenatel.LCM_NN_N(f1.znamenatel);
+		buffer->znamenatel = buffer->znamenatel.MUL_NN_N(NOK_znam.DIV_NN_N(buffer->znamenatel));
+		buffer->chislitel = buffer->chislitel.TRANS_N_Z(NOK_znam.DIV_NN_N(buffer->znamenatel));
+		f1.chislitel = f1.chislitel.TRANS_N_Z(NOK_znam.DIV_NN_N(f1.znamenatel));
+		buffer->chislitel = buffer->chislitel.SUB_ZZ_Z(f1.chislitel);
+
+		return *buffer;
 	};
 
 	fraction MUL_QQ_Q(fraction f1) // fraction * fraction
