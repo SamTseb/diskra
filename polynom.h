@@ -24,9 +24,7 @@ public:
 		} 
 
 		for (i = k; i < copy.pow || i < p1.pow; i++) // копирование коэффициентов при переменных "без пары" в новый полином 
-		{ 
 			new_polynom.body[i] = (copy.pow > p1.pow) ? copy.body[i] : p1.body[i]; 
-		} 
 		
 		new_polynom.pow = (copy.pow > p1.pow) ? copy.pow : p1.pow; 
 
@@ -35,17 +33,68 @@ public:
 
 	polynom SUB_PP_P(polynom p1) //вычитание многосленов
 	{
-		return;
+		polynom copy, new_polynom; 
+		int k = 0, i; 
+
+		copy.pow = pow; 
+
+		for (i = 0; i < copy.pow; i++) 
+			copy.body[i] = body[i]; 
+
+
+		for (i = 0; i < copy.pow && i < p1.pow; i++) // вычитание коэффициентов при переменных с одинаковой степенью 
+		{ 
+			new_polynom.body[i] = SUB_QQ_Q(p1); 
+			k++; 
+		} 
+
+		for (i = k; i < copy.pow || i < p1.pow; i++) // копирование коэффициентов при переменных "без пары" в новый полином 
+			new_polynom.body[i] = (copy.pow > p1.pow) ? copy.body[i] : p1.body[i];  
+		
+		new_polynom.pow = (copy.pow > p1.pow) ? copy.pow : p1.pow; 
+
+		return new_polynom; 
 	};
 
 	polynom MUL_PQ_P(int chisl, int znam) //умножение на рациональное число
 	{
-		return;
+		// тут под вопросом
+		polynom new_polynom;  
+		int i; 
+
+		new_polynom.pow = pow; 
+
+		for (i = 0; i < new_polynom.pow; i++) // вычитание коэффициентов при переменных с одинаковой степенью 
+		{ 
+			new_polynom.body[i] = body[i]; 
+			new_polynom.body[i] = MUL_QQ_Q(new_polynom); // вот этот момент! 
+		} 
+
+		return new_polynom; 
 	};
 
 	polynom MUL_Pxk_P(int k) //умножение на x^k
 	{
-		return;
+		polynom copy, new_polynom; 
+		int k, i; 
+
+		copy.pow = pow; 
+
+		for (i = 0; i < copy.pow; i++) 
+			copy.body[i] = body[i]; 
+
+		if (k > 0) 
+		{ 
+			for (i = 0; i < copy.pow; i++) 
+ 				new_polynom.body[i + k] = copy.body[i]; 
+		} 
+		else 
+		{ 
+
+			// .... 
+		} 
+
+		return new_polynom; 
 	};
 
 	fraction LED_P_Q() //старший коэффициент
