@@ -11,6 +11,18 @@ class N_Number
 {
 public:
     int number[Size],last_position;
+    
+		N_Number (string str){
+			int i=0;
+
+			while(str[i] != '/0') i++; // Scan number
+
+			last_position = i-1;
+
+			for(int j = i-1, z = 0; j >= 0; z++, j--) number[z]=str[j]; // Push number
+
+		}
+    
     int COM_NN_D(N_Number number_2)
     {
         if(last_position>number_2.last_position) return 2;
@@ -28,8 +40,8 @@ public:
     }
     string NZER_N_B()
     {
-        if((last_position==1) && (number[0]==0)) return "νες";
-        else return "δΰ";
+        if((last_position==1) && (number[0]==0)) return "Γ­Γ₯Γ²";
+        else return "Γ€Γ ";
     }
     N_Number ADD_1N_N()
     {
