@@ -90,8 +90,8 @@ public:
 		} 
 		else 
 		{ 
-
-			// .... 
+			if(copy.pow-i+k>0) 
+				new_polynom.body[i] = copy.body[i-k]; 
 		} 
 
 		return new_polynom; 
