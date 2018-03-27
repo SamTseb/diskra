@@ -10,6 +10,19 @@ class N_Number
 {
 public:
     int number[Size],last_position;
+    
+		N_Number (string str){
+			int i=0;
+
+			while(str[i] != '/0') i++; // Scan number
+
+			last_position = i-1;
+
+			for(int j = i-1, z = 0; j >= 0; z++, j--) number[z]=static_cast<int>(str[j]); // Push number
+
+		}
+
+
     N_Number Return_Number()
     {
         N_Number number_0;
@@ -35,7 +48,7 @@ public:
     }
     int NZER_N_B()
     {
-        if((last_position==1) && (number[0]==0)) return 0; //0 - выводим "нет", 1 - выводим "да".
+        if((last_position==1) && (number[0]==0)) return 0; //0 - ГўГ»ГўГ®Г¤ГЁГ¬ "Г­ГҐГІ", 1 - ГўГ»ГўГ®Г¤ГЁГ¬ "Г¤Г ".
         else return 1;
     }
     N_Number ADD_1N_N()
@@ -127,7 +140,7 @@ public:
                 number[0]=-1;
             }
         number_2=Return_Number();
-        return number_2; //Возвращает -1, если первое число меньше второго.
+        return number_2; //Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ -1, ГҐГ±Г«ГЁ ГЇГҐГ°ГўГ®ГҐ Г·ГЁГ±Г«Г® Г¬ГҐГ­ГјГёГҐ ГўГІГ®Г°Г®ГЈГ®.
     }
     N_Number MUL_ND_N(int numeral)
     {
@@ -239,7 +252,7 @@ public:
             answer.number[0]=numeral;
             answer.MUL_Nk_N(position);
         }
-        return answer; //Возвращает -2, если пытаемся делить на 0.
+        return answer; //Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ -2, ГҐГ±Г«ГЁ ГЇГ»ГІГ ГҐГ¬Г±Гї Г¤ГҐГ«ГЁГІГј Г­Г  0.
     }
     N_Number DIV_NN_N(N_Number number_2)
     {
@@ -266,7 +279,7 @@ public:
                 number_0=number_0.SUB_NN_N(number_2.MUL_NN_N(number_0.DIV_NN_Dk(number_2)));
             }
         }
-        return answer; //Возвращает -2, если пытаемся делить на 0.
+        return answer; //Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ -2, ГҐГ±Г«ГЁ ГЇГ»ГІГ ГҐГ¬Г±Гї Г¤ГҐГ«ГЁГІГј Г­Г  0.
     }
     N_Number MOD_NN_N(N_Number number_2)
     {
@@ -287,7 +300,7 @@ public:
             }
             answer=SUB_NN_N(DIV_NN_N(number_2).MUL_NN_N(number_2));
         }
-        return answer; //Возвращает -2, если пытаемся делить на 0.
+        return answer; //Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ -2, ГҐГ±Г«ГЁ ГЇГ»ГІГ ГҐГ¬Г±Гї Г¤ГҐГ«ГЁГІГј Г­Г  0.
     }
     N_Number GCF_NN_N(N_Number number_2)
     {
@@ -307,7 +320,7 @@ public:
         if((NZER_N_B()==0) && (number_2.NZER_N_B()==0))
         {
             number_2.number[0]=-3;
-            return number_2; //Возвращает -3, если оба числа равны 0.
+            return number_2; //Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ -3, ГҐГ±Г«ГЁ Г®ГЎГ  Г·ГЁГ±Г«Г  Г°Г ГўГ­Г» 0.
         }
         return MUL_NN_N(number_2).DIV_NN_N(GCF_NN_N(number_2));
     }
