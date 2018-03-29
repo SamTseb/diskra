@@ -6,7 +6,7 @@ public:
 	int pow; // многочлен будет этой степени
 	Drob body[100]; // коэффициенты многочлена в виде дробей, храним задом наперед (a0,a1,a2...)
 
-	polynom ADD_PP_P(polynom p1) //сложение многосленов
+	polynom ADD_PP_P(polynom p1) //сложение многочленов
 	{
 		polynom copy, new_polynom; 
 		int k = 0, i; 
@@ -31,7 +31,7 @@ public:
 		return new_polynom; 
 	};
 
-	polynom SUB_PP_P(polynom p1) //вычитание многосленов
+	polynom SUB_PP_P(polynom p1) //вычитание многочленов
 	{
 		polynom copy, new_polynom; 
 		int k = 0, i; 
@@ -112,7 +112,7 @@ public:
 		return;
 	};
 
-	polynom MUL_PP_P(polynom p1) //умножение многосленов
+	polynom MUL_PP_P(polynom p1) //умножение многочленов
 	{
 		return;
 	};
@@ -167,14 +167,39 @@ public:
 		return result = SUB_PP_P(QP);
 	};
 
-	polynom GCF_PP_P(polynom p1) //НОД многосленов
+	polynom GCF_PP_P(polynom p1) //НОД многочленов
 	{
+		polynom copy, remainder, new_polynom; 
+		int i;
+		copy.pow = pow; 
+
+		for (i = 0; i < copy.pow; i++) 
+			copy.body[i] = body[i];
+		
+		bool flag = true;
+		while (flag == true){
+			remainder = MOD_PP_P(p1); //находим остаток от деления многочленов
+			remainder.pow = DEG_P_N(remainder); //если степень нулевая, НОД найден
+			if (remainder.pow == 0) 
+				flag = false;
+			//пока оставлю так
 		return;
 	};
 
-	polynom DER_P_P(polynom p1) //производная многочлена
+	polynom DER_P_P() //производная многочлена
 	{
-		return;	
+		polynom copy, new_polynom; 
+		int i;
+		copy.pow = pow; 
+
+		for (i = 0; i < copy.pow; i++) 
+			copy.body[i] = body[i]; 
+		
+		for (i = 0; i < copy.pow - 1; i++) 
+			new_polynom.body[i] = (i+1)*copy.body[i+1];
+		new_polynom.body[copy.pow] = 0;
+		
+		return new_polynom;	
 	};
 
 	polynom NMR_P_P() //преобразование корней
