@@ -119,28 +119,36 @@ public:
 
 	polynom DIV_PP_P(polynom p1) //частное от деления многочлена на многочлен
 	{
-		polynom copy, new_polynom; 
+		polynom copy, copy2 new_polynom; 
 		int k = 0, i;
 		
 		copy.pow = pow;
-		for (i = 0; i < copy.pow; i++)
+		for (i = 0; i < copy.pow + 1; i++)
 			copy.body[i] = body[i];
-
+		
 		while (p1.pow <= copy.pow) {
-			for (i = p1.pow - 1; i != pow - 1; i++)
+			
+			copy2.pow = p1.pow;
+			for (i = 0; i < copy.pow + 1; i++)
+				copy.body[i] = body[i];
+			
+			for (i = p1.pow + 1; i < copy.pow - p1.pow + 1; i++)
 				p1.body[i] = 0;
+			
+			for (int i = copy.pow - p1.pow + 1; i < copy.pow + 1; i++)
+				p1.body[i] = copy2.body[i - copy.pow + p1.pow - 1];
 
-			for (i = 0; i < copy.pow; i++)
-				p1.body[i] *= copy.body[copy.pow - 1];
+			for (i = 0; i < copy.pow + 1; i++)
+				p1.body[i] *= copy.body[copy.pow + 1];
 
-			for (i = 0; i < pow; i++)
-				body[i] -= copy.body[i];
+			for (i = 0; i < copy.pow + 1; i++)
+				p1.body[i] -= copy.body[i];
 
 			new_polynom.body[k++] = copy.body[i];  // коэфициенты записаны в прямом порядке (an...a1,a0)
 			copy.pow--;
 		}
 		
-		new_polynom.pow = k;
+		new_polynom.pow = k - 1;
 		
 		return new_polynom;
 	};
