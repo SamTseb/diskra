@@ -119,36 +119,28 @@ public:
 
 	polynom DIV_PP_P(polynom p1) //частное от деления многочлена на многочлен
 	{
-		polynom copy, copy2 new_polynom; 
+		polynom copy, new_polynom; 
 		int k = 0, i;
 		
 		copy.pow = pow;
-		for (i = 0; i < copy.pow + 1; i++)
+		for (i = 0; i < copy.pow; i++)
 			copy.body[i] = body[i];
-		
+
 		while (p1.pow <= copy.pow) {
-			
-			copy2.pow = p1.pow;
-			for (i = 0; i < copy.pow + 1; i++)
-				copy.body[i] = body[i];
-			
-			for (i = p1.pow + 1; i < copy.pow - p1.pow + 1; i++)
+			for (i = p1.pow - 1; i != pow - 1; i++)
 				p1.body[i] = 0;
-			
-			for (int i = copy.pow - p1.pow + 1; i < copy.pow + 1; i++)
-				p1.body[i] = copy2.body[i - copy.pow + p1.pow - 1];
 
-			for (i = 0; i < copy.pow + 1; i++)
-				p1.body[i] *= copy.body[copy.pow + 1];
+			for (i = 0; i < copy.pow; i++)
+				p1.body[i] *= copy.body[copy.pow - 1];
 
-			for (i = 0; i < copy.pow + 1; i++)
-				p1.body[i] -= copy.body[i];
+			for (i = 0; i < pow; i++)
+				body[i] -= copy.body[i];
 
 			new_polynom.body[k++] = copy.body[i];  // коэфициенты записаны в прямом порядке (an...a1,a0)
 			copy.pow--;
 		}
 		
-		new_polynom.pow = k - 1;
+		new_polynom.pow = k;
 		
 		return new_polynom;
 	};
@@ -177,21 +169,29 @@ public:
 
 	polynom GCF_PP_P(polynom p1) //НОД многочленов
 	{
-		polynom copy, remainder, new_polynom; 
+		polynom copy, copy_p1, remainder, new_polynom; 
 		int i;
 		copy.pow = pow; 
 
 		for (i = 0; i < copy.pow; i++) 
 			copy.body[i] = body[i];
 		
+		p1.pow = DEG_P_N(p1);
+		for (i = 0; i < p1.pow; i++) 
+			copy_p1.body[i] = p1.body[i];
+		
 		bool flag = true;
 		while (flag == true){
-			remainder = MOD_PP_P(p1); //находим остаток от деления многочленов
+			remainder = MOD_PP_P(copy_p1); //находим остаток от деления многочленов
 			remainder.pow = DEG_P_N(remainder); //если степень нулевая, НОД найден
 			if (remainder.pow == 0) 
 				flag = false;
-			//пока оставлю так
-		return;
+			for (i = 0; i < p1.pow; i++) 
+				copy.body[i] = copy_p1.body[i];
+			for (i = 0; i < p1.pow; i++) 
+				copy_p1.body[i] = remainder.body[i]; //???
+		}
+		return copy;
 	};
 
 	polynom DER_P_P() //производная многочлена
