@@ -119,28 +119,31 @@ public:
 
 	polynom DIV_PP_P(polynom p1) //частное от деления многочлена на многочлен
 	{
-		polynom copy, new_polynom; 
+		polynom copy, new_polynom, temporary, quotient; 
 		int k = 0, i;
+		fraction led1, led2;
 		
 		copy.pow = pow;
-		for (i = 0; i < copy.pow; i++)
+		quotient.pow = pow;
+		for (i = 0; i < copy.pow; i++) {
 			copy.body[i] = body[i];
-
-		while (p1.pow <= copy.pow) {
-			for (i = p1.pow - 1; i != pow - 1; i++)
-				p1.body[i] = 0;
-
-			for (i = 0; i < copy.pow; i++)
-				p1.body[i] *= copy.body[copy.pow - 1];
-
-			for (i = 0; i < pow; i++)
-				body[i] -= copy.body[i];
-
-			new_polynom.body[k++] = copy.body[i];  // коэфициенты записаны в прямом порядке (an...a1,a0)
-			copy.pow--;
+			quotient.body[i] = body[i];
 		}
 		
-		new_polynom.pow = k;
+		new_polynom. pow = copy.pow - p1.pow;
+		
+		while (p1.pow <= quotient.pow) {
+			led1 = LED_P_Q(quotient);
+			led2 = LED_P_Q(p1);
+			
+			temporary.pow = quotient.pow - p1.pow;
+			temporary.body[temporary.pow] = led1/led2;
+			for (i = 0; i < temporary.pow - 1; i++)
+				temporary.body[i] = 0;
+			
+			new_polynom = ADD_PP_P(temporary);
+			quotient = SUB_PP_P(MUL_PP_P(p1, temporary));
+		}
 		
 		return new_polynom;
 	};
