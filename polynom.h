@@ -189,12 +189,18 @@ public:
 			remainder.pow = DEG_P_N(remainder); //если степень нулевая, НОД найден
 			if (remainder.pow == 0) 
 				flag = false;
-			for (i = 0; i < p1.pow; i++) 
-				copy.body[i] = copy_p1.body[i];
-			for (i = 0; i < p1.pow; i++) 
-				copy_p1.body[i] = remainder.body[i]; //???
+			else {
+				for (i = 0; i < p1.pow; i++) 
+					body[i] = copy_p1.body[i];
+				for (i = 0; i < p1.pow; i++) 
+					copy_p1.body[i] = remainder.body[i];
+			}
 		}
-		return copy;
+		
+		for (i = 0; i < copy.pow; i++) 
+			body[i] = copy.body[i];
+		
+		return copy_p1;
 	};
 
 	polynom DER_P_P() //производная многочлена
