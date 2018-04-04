@@ -172,35 +172,33 @@ public:
 
 	polynom GCF_PP_P(polynom p1) //НОД многочленов
 	{
-		polynom copy, copy_p1, remainder, new_polynom; 
+		polynom copy, remainder; 
 		int i;
 		copy.pow = pow; 
 
-		for (i = 0; i < copy.pow; i++) 
+		for (i = 0; i < pow; i++) 
 			copy.body[i] = body[i];
-		
-		p1.pow = DEG_P_N(p1);
-		for (i = 0; i < p1.pow; i++) 
-			copy_p1.body[i] = p1.body[i];
 		
 		bool flag = true;
 		while (flag == true){
-			remainder = MOD_PP_P(copy_p1); //находим остаток от деления многочленов
+			remainder = MOD_PP_P(p1); //находим остаток от деления многочленов
 			remainder.pow = DEG_P_N(remainder); //если степень нулевая, НОД найден
 			if (remainder.pow == 0) 
 				flag = false;
 			else {
+				p1.pow = DEG_P_N(p1);
+				for (i = 0; i < pow; i++) 
+					body[i] = p1.body[i];
 				for (i = 0; i < p1.pow; i++) 
-					body[i] = copy_p1.body[i];
-				for (i = 0; i < p1.pow; i++) 
-					copy_p1.body[i] = remainder.body[i];
+					p1.body[i] = remainder.body[i];
 			}
 		}
 		
 		for (i = 0; i < copy.pow; i++) 
 			body[i] = copy.body[i];
+		pow = copy.pow;
 		
-		return copy_p1;
+		return p1;
 	};
 
 	polynom DER_P_P() //производная многочлена
