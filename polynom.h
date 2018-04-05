@@ -205,14 +205,10 @@ public:
 	{
 		polynom copy, new_polynom; 
 		int i;
-		copy.pow = pow; 
-
-		for (i = 0; i < copy.pow; i++) 
-			copy.body[i] = body[i]; 
 		
-		for (i = 0; i < copy.pow - 1; i++) 
-			new_polynom.body[i] = (i+1)*copy.body[i+1];
-		new_polynom.body[copy.pow] = 0;
+		for (i = 0; i < pow - 1; i++) 
+			new_polynom.body[i] = (i+1)*body[i+1];
+		new_polynom.body[pow] = 0;
 		
 		return new_polynom;	
 	};
