@@ -203,18 +203,34 @@ public:
 
 	polynom DER_P_P() //производная многочлена
 	{
-		polynom copy, new_polynom; 
+		polynom copy, new_polynom;
 		int i;
-		
-		for (i = 0; i < pow - 1; i++) 
-			new_polynom.body[i] = (i+1)*body[i+1];
-		new_polynom.body[pow] = 0;
-		
-		return new_polynom;	
+		copy.pow = pow;
+
+		for (i = 0; i < copy.pow; i++)
+			copy.body[i] = body[i];
+
+		for (i = 1; i < copy.pow - 1; i++)
+			new_polynom.body[i-1] = (i+1)*copy.body[i+1];
+		new_polynom.body[copy.pow-1] = 0;
+
+		return new_polynom;
 	};
 
 	polynom NMR_P_P() //преобразование корней
 	{
-		return;
+			polynom copy, new_polynom, deriv, NOD;
+
+			copy.pow =  pow;
+			for (i = 0; i < pow; i++)
+				{
+				copy.body[i] = body[i];
+				//deriv.body[i] = body[i];
+			}
+
+			deriv = DER_P_P();
+			NOD = 	GCF_PP_P(deriv);
+			new_polynom = DIV_PP_P(NOD);
+		return new_polynom;
 	};
 }
